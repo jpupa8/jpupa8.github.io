@@ -3,7 +3,7 @@
 <head><meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Final_Tutorial</title><script type="text/javascript" src="http://gc.kis.v2.scr.kaspersky-labs.com/FD126C42-EBFA-4E12-B309-BB3FDD723AC1/main.js?attr=uxpL1s5YKsYkg1NTd4tWUS9k7QXWJkuP_12lgbaXAKqM0GecuT0semugYRhHxa2MYVB9m7Ho5kizaDA3TYdSiHV2F5J3SPr9GPdRCON1yEv5MgwnOrEBYg02MQTq0FN6" charset="UTF-8"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
+<title>Final_Tutorial</title><script type="text/javascript" src="http://gc.kis.v2.scr.kaspersky-labs.com/FD126C42-EBFA-4E12-B309-BB3FDD723AC1/main.js?attr=lhcVE2S_L8OfMzoaPt5dQaYzslDJzNgRL0ruD0EL2l8eswkA6urUqkogQzY9gwwfpYuPtFcjxGsq2L11LooKAneLkKcA5Fqs_F89RvbL-YF4dqt-CQ3sXGaxxloeSyJX" charset="UTF-8"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 
 
 
@@ -14565,9 +14565,8 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>Baseball's 2021 crackdown on Pine Tar, an analysis.</p>
-<p>Using Data Science to determine the effectiveness and rationale of Major League Baseball's midseason increase in enforcement against the use of grip enhancing substances by pitchers.</p>
-<p>Joseph Pupa, May 16, 2022.</p>
+<p>CMSC320 Final Project
+Joseph Pupa</p>
 <p>Introduction: 
 Two things have long been truths in Major League Baseball: First, its a numbers game, average, on-base-percentage, spin-rate, launch-angle, wins-above-replacement. Over the years, the game has evolved to track the performance of players is every way imaginable, with todays revolution being in the use of radar and other technology systems to track everything down to the acceleration of the bat head on a swing. The other truth is the game's long history of cheating. Virtually everyone is familiar with the Black Sox scanadal of nearly a century ago, or the steroid-era led by the likes of Barry Bonds, Mark McGuire, Samy Sosa, and Alex Rodriguez. In recent years, the Houston Astros have been taken to task for their use of electronics to steal signs en route to a World Series victory. On June 20 of 2021, however, the commisioners office cracked down on a different kind of cheating, the use of pine tar or "sticky stuff" (pine tar and other substances will be refered to as such for the remainder of this document) as it is refered to by pitchers around the sport. Allegedly, pitchers used pine tar to gain extra grip on the ball, thus allowing their spin rate and velocity to increase, making their pitches harder to hit, thus slowing down offenses around the game. In this tutorial, I seek to answer three primary questions. First, as it relates to the pitchers, did this crackdown have an effect on the the features of pitching they felt this exploit gave them a leg up in? Second, did this crack down have an impact on offense around the sport, ie did hitters benefit from what the league saw as leveling the playing field. Third, is there an identifiable linear relationship between the changes they desired to see in both pitching and offense. Answering these questions will allow us to more definitively see whether the use of "sticky stuff" was appropriately combated and to judge the success of their actions against it.</p>
 <p>Credit: All pitching data for this project acquired through Baseball Savant, a MLB Advanced Media service specializing in statistical tracking and search. (baseballsavant.mlb.com).
@@ -15231,7 +15230,7 @@ For purposes of this project, I will be using pandas, numpy, and matplot lib to 
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[6]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[16]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">statsmodels.api</span> <span class="k">as</span> <span class="nn">sm</span>
@@ -15289,6 +15288,11 @@ For purposes of this project, I will be using pandas, numpy, and matplot lib to 
     <span class="n">k_by_month</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">month</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;K%&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s1">&#39;%&#39;</span><span class="p">)))</span>
     <span class="n">bb_by_month</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">month</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;BB%&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s1">&#39;%&#39;</span><span class="p">)))</span>
 
+<span class="c1">#Ignoring warnings appearing from test. NA to our usage. </span>
+<span class="kn">import</span> <span class="nn">warnings</span>
+<span class="kn">from</span> <span class="nn">statsmodels.tools.sm_exceptions</span> <span class="kn">import</span> <span class="n">ValueWarning</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">simplefilter</span><span class="p">(</span><span class="s1">&#39;ignore&#39;</span><span class="p">,</span> <span class="n">ValueWarning</span><span class="p">)</span>
+
 <span class="c1">#Test One (Spinrate vs K Rate)</span>
 <span class="n">x</span> <span class="o">=</span> <span class="n">spinrate_by_month</span>
 <span class="n">y</span> <span class="o">=</span> <span class="n">k_by_month</span>
@@ -15322,7 +15326,7 @@ Dep. Variable:                      y   R-squared:                       0.727
 Model:                            OLS   Adj. R-squared:                  0.659
 Method:                 Least Squares   F-statistic:                     10.66
 Date:                Mon, 16 May 2022   Prob (F-statistic):             0.0309
-Time:                        14:32:35   Log-Likelihood:                -2.9997
+Time:                        15:11:26   Log-Likelihood:                -2.9997
 No. Observations:                   6   AIC:                             9.999
 Df Residuals:                       4   BIC:                             9.583
 Df Model:                           1                                         
@@ -15347,19 +15351,6 @@ strong multicollinearity or other numerical problems.
 </div>
 </div>
 
-<div class="jp-OutputArea-child">
-
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-
-
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr">
-<pre>/opt/conda/lib/python3.9/site-packages/statsmodels/stats/stattools.py:74: ValueWarning: omni_normtest is not valid with less than 8 observations; 6 samples were given.
-  warn(&#34;omni_normtest is not valid with less than 8 observations; %i &#34;
-</pre>
-</div>
-</div>
-
 </div>
 
 </div>
@@ -15378,7 +15369,7 @@ strong multicollinearity or other numerical problems.
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[7]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[17]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#Test two: Spinrate vs Walk Rate</span>
@@ -15414,7 +15405,7 @@ Dep. Variable:                      y   R-squared:                       0.508
 Model:                            OLS   Adj. R-squared:                  0.385
 Method:                 Least Squares   F-statistic:                     4.124
 Date:                Mon, 16 May 2022   Prob (F-statistic):              0.112
-Time:                        14:34:57   Log-Likelihood:                 1.7864
+Time:                        15:11:28   Log-Likelihood:                 1.7864
 No. Observations:                   6   AIC:                            0.4271
 Df Residuals:                       4   BIC:                           0.01067
 Df Model:                           1                                         
@@ -15439,19 +15430,6 @@ strong multicollinearity or other numerical problems.
 </div>
 </div>
 
-<div class="jp-OutputArea-child">
-
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-
-
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr">
-<pre>/opt/conda/lib/python3.9/site-packages/statsmodels/stats/stattools.py:74: ValueWarning: omni_normtest is not valid with less than 8 observations; 6 samples were given.
-  warn(&#34;omni_normtest is not valid with less than 8 observations; %i &#34;
-</pre>
-</div>
-</div>
-
 </div>
 
 </div>
@@ -15469,7 +15447,7 @@ strong multicollinearity or other numerical problems.
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[8]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[18]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#Test three, Spinrate vs OBP.</span>
@@ -15505,7 +15483,7 @@ Dep. Variable:                      y   R-squared:                       0.451
 Model:                            OLS   Adj. R-squared:                  0.314
 Method:                 Least Squares   F-statistic:                     3.290
 Date:                Mon, 16 May 2022   Prob (F-statistic):              0.144
-Time:                        14:35:17   Log-Likelihood:                 26.007
+Time:                        15:11:31   Log-Likelihood:                 26.007
 No. Observations:                   6   AIC:                            -48.01
 Df Residuals:                       4   BIC:                            -48.43
 Df Model:                           1                                         
@@ -15530,19 +15508,6 @@ strong multicollinearity or other numerical problems.
 </div>
 </div>
 
-<div class="jp-OutputArea-child">
-
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-
-
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr">
-<pre>/opt/conda/lib/python3.9/site-packages/statsmodels/stats/stattools.py:74: ValueWarning: omni_normtest is not valid with less than 8 observations; 6 samples were given.
-  warn(&#34;omni_normtest is not valid with less than 8 observations; %i &#34;
-</pre>
-</div>
-</div>
-
 </div>
 
 </div>
@@ -15560,7 +15525,7 @@ strong multicollinearity or other numerical problems.
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[9]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[19]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#Test four, Velocity vs OBP</span>
@@ -15596,7 +15561,7 @@ Dep. Variable:                      y   R-squared:                       0.738
 Model:                            OLS   Adj. R-squared:                  0.672
 Method:                 Least Squares   F-statistic:                     11.25
 Date:                Mon, 16 May 2022   Prob (F-statistic):             0.0285
-Time:                        14:35:32   Log-Likelihood:                 28.222
+Time:                        15:11:33   Log-Likelihood:                 28.222
 No. Observations:                   6   AIC:                            -52.44
 Df Residuals:                       4   BIC:                            -52.86
 Df Model:                           1                                         
@@ -15621,19 +15586,6 @@ strong multicollinearity or other numerical problems.
 </div>
 </div>
 
-<div class="jp-OutputArea-child">
-
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-
-
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr">
-<pre>/opt/conda/lib/python3.9/site-packages/statsmodels/stats/stattools.py:74: ValueWarning: omni_normtest is not valid with less than 8 observations; 6 samples were given.
-  warn(&#34;omni_normtest is not valid with less than 8 observations; %i &#34;
-</pre>
-</div>
-</div>
-
 </div>
 
 </div>
@@ -15651,7 +15603,7 @@ strong multicollinearity or other numerical problems.
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[10]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[20]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#Test Five, velocity vs k rate </span>
@@ -15687,7 +15639,7 @@ Dep. Variable:                      y   R-squared:                       0.396
 Model:                            OLS   Adj. R-squared:                  0.245
 Method:                 Least Squares   F-statistic:                     2.626
 Date:                Mon, 16 May 2022   Prob (F-statistic):              0.180
-Time:                        14:35:51   Log-Likelihood:                -5.3825
+Time:                        15:11:37   Log-Likelihood:                -5.3825
 No. Observations:                   6   AIC:                             14.76
 Df Residuals:                       4   BIC:                             14.35
 Df Model:                           1                                         
@@ -15712,19 +15664,6 @@ strong multicollinearity or other numerical problems.
 </div>
 </div>
 
-<div class="jp-OutputArea-child">
-
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-
-
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr">
-<pre>/opt/conda/lib/python3.9/site-packages/statsmodels/stats/stattools.py:74: ValueWarning: omni_normtest is not valid with less than 8 observations; 6 samples were given.
-  warn(&#34;omni_normtest is not valid with less than 8 observations; %i &#34;
-</pre>
-</div>
-</div>
-
 </div>
 
 </div>
@@ -15734,7 +15673,7 @@ strong multicollinearity or other numerical problems.
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[11]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[21]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#Test Six, Velocity vs BB Rate. </span>
@@ -15770,7 +15709,7 @@ Dep. Variable:                      y   R-squared:                       0.001
 Model:                            OLS   Adj. R-squared:                 -0.249
 Method:                 Least Squares   F-statistic:                  0.002069
 Date:                Mon, 16 May 2022   Prob (F-statistic):              0.966
-Time:                        14:36:05   Log-Likelihood:               -0.33751
+Time:                        15:11:39   Log-Likelihood:               -0.33751
 No. Observations:                   6   AIC:                             4.675
 Df Residuals:                       4   BIC:                             4.259
 Df Model:                           1                                         
@@ -15795,19 +15734,6 @@ strong multicollinearity or other numerical problems.
 </div>
 </div>
 
-<div class="jp-OutputArea-child">
-
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-
-
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr">
-<pre>/opt/conda/lib/python3.9/site-packages/statsmodels/stats/stattools.py:74: ValueWarning: omni_normtest is not valid with less than 8 observations; 6 samples were given.
-  warn(&#34;omni_normtest is not valid with less than 8 observations; %i &#34;
-</pre>
-</div>
-</div>
-
 </div>
 
 </div>
@@ -15825,7 +15751,7 @@ strong multicollinearity or other numerical problems.
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[12]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[22]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#Test Seven, K Rate vs OBP</span>
@@ -15861,7 +15787,7 @@ Dep. Variable:                      y   R-squared:                       0.682
 Model:                            OLS   Adj. R-squared:                  0.602
 Method:                 Least Squares   F-statistic:                     8.565
 Date:                Mon, 16 May 2022   Prob (F-statistic):             0.0430
-Time:                        14:36:25   Log-Likelihood:                 27.641
+Time:                        15:11:42   Log-Likelihood:                 27.641
 No. Observations:                   6   AIC:                            -51.28
 Df Residuals:                       4   BIC:                            -51.70
 Df Model:                           1                                         
@@ -15880,19 +15806,6 @@ Kurtosis:                       1.648   Cond. No.                         707.
 
 Notes:
 [1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
-</pre>
-</div>
-</div>
-
-<div class="jp-OutputArea-child">
-
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-
-
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr">
-<pre>/opt/conda/lib/python3.9/site-packages/statsmodels/stats/stattools.py:74: ValueWarning: omni_normtest is not valid with less than 8 observations; 6 samples were given.
-  warn(&#34;omni_normtest is not valid with less than 8 observations; %i &#34;
 </pre>
 </div>
 </div>
