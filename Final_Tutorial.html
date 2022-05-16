@@ -3,7 +3,7 @@
 <head><meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Final_Tutorial</title><script type="text/javascript" src="http://gc.kis.v2.scr.kaspersky-labs.com/FD126C42-EBFA-4E12-B309-BB3FDD723AC1/main.js?attr=ZMsaSHG9p3GhY9bPlNtK8VjPpMAIjhczPQAkHBOGDusVLrd7MeG0HRIwZuFoWDutMuXTSujyhT2hWJYs42jBau_VcP6siguy3Jq7itBLjV3xAKr0q923ViWr5sjb0u4Q" charset="UTF-8"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
+<title>Final_Tutorial</title><script type="text/javascript" src="http://gc.kis.v2.scr.kaspersky-labs.com/FD126C42-EBFA-4E12-B309-BB3FDD723AC1/main.js?attr=yZy-b6IOLTUttYxszolrYZs2taVtXqLTGyc12eVJX0KptxyM3P2iqOur0PuEHxd2clIU3I4vYeyy3YK59Kw5IILSZAbHFRjCqZUEHEHXimliw45L8DIm3e3zMTKCYF4A" charset="UTF-8"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 
 
 
@@ -14565,13 +14565,19 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<b>Baseball's crackdown on grip enchancing substances, an Analysis.</b>
+<p>Baseball's crackdown on grip enchancing substances, an Analysis.</p>
 <p>Using Data Science and its processes to determine the effectiveness and rationale of the 2021 mid-season increase of enforcement against the use of gripping substances by pitchers.</p>
 <p>Joseph Pupa, May 16, 2022.</p>
 <p>Introduction: 
 Two things have long been truths in Major League Baseball: First, its a numbers game, average, on-base-percentage, spin-rate, launch-angle, wins-above-replacement. Over the years, the game has evolved to track the performance of players is every way imaginable, with todays revolution being in the use of radar and other technology systems to track everything down to the acceleration of the bat head on a swing. The other truth is the game's long history of cheating. Virtually everyone is familiar with the Black Sox scanadal of nearly a century ago, or the steroid-era led by the likes of Barry Bonds, Mark McGuire, Samy Sosa, and Alex Rodriguez. In recent years, the Houston Astros have been taken to task for their use of electronics to steal signs en route to a World Series victory. On June 20 of 2021, however, the commisioners office cracked down on a different kind of cheating, the use of pine tar or "sticky stuff" (pine tar and other substances will be refered to as such for the remainder of this document) as it is refered to by pitchers around the sport. Allegedly, pitchers used pine tar to gain extra grip on the ball, thus allowing their spin rate and velocity to increase, making their pitches harder to hit, thus slowing down offenses around the game. In this tutorial, I seek to answer three primary questions. First, as it relates to the pitchers, did this crackdown have an effect on the the features of pitching they felt this exploit gave them a leg up in? Second, did this crack down have an impact on offense around the sport, ie did hitters benefit from what the league saw as leveling the playing field. Third, is there an identifiable linear relationship between the changes they desired to see in both pitching and offense. Answering these questions will allow us to more definitively see whether the use of "sticky stuff" was appropriately combated and to judge the success of their actions against it.</p>
 <p>Credit: All pitching data for this project acquired through Baseball Savant, a MLB Advanced Media service specializing in statistical tracking and search. (baseballsavant.mlb.com).
 All batting data for this project was acquired through FanGraphs, a popular baseball statistics and sabermetrics tracking and reporting outlet. (Fangraphs.com)</p>
+<p>To Reproduce this Data:</p>
+<p>Baseball Savant:</p>
+<p>baseballsavant.mlb.com , Under the "Search" feature, enter the desired statistics and dates in the fields. For example, to reproduce the pitching data before the crackdown, Select Dates of April 1, 2021 through June 20, 2021. Select year 2021. Select Player Type as Pitcher, and then Search. The resulting page gives options to download results as csv.</p>
+<p>FanGraphs:
+fangraphs.com, under Leaders tab. Select batting, pitching, or defense. For example, to reproduce the batting data before the crackdown, Select batting leaders, then select 2021 under "Single Season", and enter the same custom data range as for the pitching data example. The results will appear below. Click "Export Data" to download the data as a csv.</p>
+<p>All CSV's used in this project can be found in the public project repository: <a href="https://github.com/jpupa8/jpupa8.github.io">https://github.com/jpupa8/jpupa8.github.io</a></p>
 <p>Data Collection: 
 For purposes of this project, I will be using pandas, numpy, and matplot lib to help organize and wrangle the data needed to answer the questions posed above. First, it is important to define the data that I will import below. The sticky stuff crackdown occured on June 20, 2021. In order to quantify the impacts of the crackdown, and the use of sticky stuff itself, I have collected two data sets from Baseball Savant (credited above). First, a set called before, which is comprised of all pitching information from opening day of the 2021 season through the date of the crackdown (totaling 80 days of the season). Second, a set called after, is comprised of the following 85 days after the crackdown was announced. I have chosen to extend the second data set by 5 days in order to account for the five day all star break that occurs in mid July, in an effort to roughly balance the amount of baseball played in each data set. Importing this data and printing can be seen in the code below.</p>
 
